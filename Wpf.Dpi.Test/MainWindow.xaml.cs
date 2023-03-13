@@ -26,35 +26,29 @@ namespace Wpf.Dpi.Test
             ProcessDpiAwareness.Text = result == 0 ? dpiAwareness.ToString() : "Failed";
         }
 
-        //#define DPI_AWARENESS_CONTEXT_UNAWARE              ((DPI_AWARENESS_CONTEXT)-1)
-        //#define DPI_AWARENESS_CONTEXT_SYSTEM_AWARE         ((DPI_AWARENESS_CONTEXT)-2)
-        //#define DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE    ((DPI_AWARENESS_CONTEXT)-3)
-        //#define DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2 ((DPI_AWARENESS_CONTEXT)-4)
-        //#define DPI_AWARENESS_CONTEXT_UNAWARE_GDISCALED    ((DPI_AWARENESS_CONTEXT)-5)
-
         private void OnWindowLoaded(object sender, RoutedEventArgs e)
         {
             var windowHandle = new WindowInteropHelper(this).Handle;
 
             var ctx = User32.GetWindowDpiAwarenessContext(windowHandle);
 
-            if (User32.AreDpiAwarenessContextsEqual(ctx, new IntPtr(-1)))
+            if (User32.AreDpiAwarenessContextsEqual(ctx, User32.DPI_AWARENESS_CONTEXT_UNAWARE))
             {
                 DpiAwarenessContext.Text = "DPI_AWARENESS_CONTEXT_UNAWARE";
             }
-            else if (User32.AreDpiAwarenessContextsEqual(ctx, new IntPtr(-2)))
+            else if (User32.AreDpiAwarenessContextsEqual(ctx, User32.DPI_AWARENESS_CONTEXT_SYSTEM_AWARE))
             {
                 DpiAwarenessContext.Text = "DPI_AWARENESS_CONTEXT_SYSTEM_AWARE";
             }
-            else if (User32.AreDpiAwarenessContextsEqual(ctx, new IntPtr(-3)))
+            else if (User32.AreDpiAwarenessContextsEqual(ctx, User32.DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE))
             {
                 DpiAwarenessContext.Text = "DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE";
             }
-            else if (User32.AreDpiAwarenessContextsEqual(ctx, new IntPtr(-4)))
+            else if (User32.AreDpiAwarenessContextsEqual(ctx, User32.DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2))
             {
                 DpiAwarenessContext.Text = "DPI_AWARENESS_CONTEXT_PER_MONITOR_AWARE_V2";
             }
-            else if (User32.AreDpiAwarenessContextsEqual(ctx, new IntPtr(-5)))
+            else if (User32.AreDpiAwarenessContextsEqual(ctx, User32.DPI_AWARENESS_CONTEXT_UNAWARE_GDISCALED))
             {
                 DpiAwarenessContext.Text = "DPI_AWARENESS_CONTEXT_UNAWARE_GDISCALED";
             }
